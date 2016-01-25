@@ -1,0 +1,407 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes"/>
+    <title>魔淘帮您送祝福</title>
+    <link rel="stylesheet" href="Style/style.css"/>
+    <link rel="stylesheet" href="Style/select.css"/>
+    <link rel="stylesheet" href="Style/slick.css"/>
+    <link rel="stylesheet" href="Style/slick-theme.css"/>
+</head>
+<body>
+<div class="loading">
+    <h1 style="padding-top:300px;text-align: center"><img src="Style/ajax-loader.gif" alt=""/></h1>
+</div>
+<div class="content">
+    <div class="bar"></div>
+    <!--<div class="swiper-container">-->
+        <div class="swiper-container">
+            <div class="swiper-slide" style="outline: none">
+                <img src="http://dev.images.moretao.com/games/mjj/Image/xlj_1.jpg" alt="" title="芈月传1"/>
+                <div class="icon "></div>
+            </div>
+            <div class="swiper-slide" style="outline: none">
+                <img src="http://dev.images.moretao.com/games/mjj/Image/xlj_2.jpg" alt="" title="芈月传2"/>
+                <div class="icon"></div>
+            </div>
+            <div class="swiper-slide" style="outline: none">
+                <img src="http://dev.images.moretao.com/games/mjj/Image/xlj_3.jpg" alt="" title="芈月传3"/>
+                <div class="icon"></div>
+            </div>
+            <div class="swiper-slide" style="outline: none">
+                <img src="http://dev.images.moretao.com/games/mjj/Image/xlj_4.jpg" alt="" title="芈月传4"/>
+                <div class="icon"></div>
+            </div>
+
+        </div>
+        <div class="swiper-pagination"></div>
+    <!--</div>-->
+    <div class="text">穿越千年&nbsp;&nbsp;送上一份真诚的新年祝福</div>
+
+    <div class="next">
+        <a class="btn" href="javascript:void(0);"></a>
+    </div>
+    <div class="ruler">
+        <!--<h1>活动说明</h1>-->
+        <!--<ul>-->
+            <!--<li>本系类明信片为《寻龙诀》珍藏限量版,只赠予,不售卖.</li>-->
+            <!--<li>每名用户仅限寄一张明信片</li>-->
+            <!--<li>明信片会在2016年1月以平邮方式寄出,明信片寄送有周期,望谅解.</li>-->
+            <!--<li>收不到明信片的原因可能有:寄送地址错误,派送过程中丢失等客观原因,我们无法保证明信片绝对到达.</li>-->
+            <!--<li>活动自2016年1月4日开始,至1.5万张明信片送完为止.</li>-->
+            <!--<li>本活动最终解释权归魔淘所有.</li>-->
+        <!--</ul>-->
+        <img style="width:100%" src="http://dev.images.moretao.com/games/mjj/Image/rulerbg.jpg" alt=""/>
+    </div>
+    <div class="duoyu" style="height:50px;">
+
+    </div>
+    <!--蒙层-->
+    <div class="mengceng">
+        <div class="model"></div>
+    </div>
+</div>
+<!--提交表单-->
+<div class="mxp_form">
+    <div class="control" style="background: #f4f4f4;text-align: inherit;overflow: hidden">
+        <div style="width: 100%;height: auto;padding-top: 10px;">
+            <div class="confirm_title">填写收件人地址信息</div>
+            <div class="consignee-info-input" >
+                <span>&nbsp;&nbsp;收件人：&nbsp;&nbsp;&nbsp;&nbsp;</span><input id="consignee"/>
+            </div>
+            <div class="consignee-info-input" >
+                <span>&nbsp;&nbsp;手机号码：</span><input id="phone"/>
+            </div>
+            <div class="consignee-info-input" >
+                <span>&nbsp;&nbsp;邮政编码：</span><input id="post-number"/>
+            </div>
+            <div class="consignee-info-input" >
+                <span>&nbsp;&nbsp;详细地址：</span><input id="location"/>
+            </div>
+            <input type="hidden" value="" id="userid"/>
+            <input type="hidden" value="" id="postcardid"/>
+            <input type="hidden" value="" id="plan"/>
+        </div>
+
+        <div class="consignee-save-bt-body"  >
+            <div id="consignee-save-bt" class="consignee-info-input save-bt">保存</div>
+        </div>
+    </div>
+</div>
+<!--信息确认框-->
+<div class="confirm" style="display: none">
+<div class="confirm_form">
+    <div class="head">收件信息提交后不可更改</div>
+    <div class="confirm_div">
+        <div class="confirm_up">收件人姓名:</div>
+        <div class="confirm_down confirm_name"></div>
+    </div>
+    <div class="confirm_div">
+        <div class="confirm_up">联系电话:</div>
+        <div class="confirm_down confirm_phone"></div>
+    </div>
+    <div class="confirm_div">
+        <div class="confirm_up">邮政编码:</div>
+        <div class="confirm_down confirm_code"></div>
+    </div>
+    <div class="confirm_div">
+        <div class="confirm_up">收信地址:</div>
+        <div class="confirm_down confirm_address"></div>
+    </div>
+    <div class="confirm_btn">
+        <div class="rightt">确认提交</div>
+        <div class="leftt">重新修改</div>
+    </div>
+</div>
+</div>
+<!--警告框-->
+<div id="auto-hide-alert" >
+    <div class="text-center" style="width: 100%;">
+        <span id="massage-text"> </span>
+    </div>
+</div>
+<div id="auto-hide-alert1" >
+    <div class="text-center1" style="width: 100%;">
+        <span id="massage-text1"> </span>
+    </div>
+</div>
+<script src="./Javascript/rem.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="Style/slick.min.js"></script>
+<script>
+    $('.swiper-container').slick({
+        dots: true,
+            centerMode: true,
+            infinite: false,
+            speed: 300,
+            slidesToShow: 1,
+            responsive: [
+        {
+            breakpoint: 768,
+            settings: {
+                arrows: false,
+                centerMode: true,
+                centerPadding: '30px',
+                slidesToShow: 3
+            }
+        },
+        {
+            breakpoint: 480,
+            settings: {
+                arrows: false,
+                centerMode: true,
+                centerPadding: '30px',
+                slidesToShow: 1
+            }
+        }
+    ]
+    });
+
+</script>
+<script>
+    function preloadimages(arr,fn){
+        var newimages=[], loadedimages=0
+        var arr=(typeof arr!="object")? [arr] : arr;
+        function imageloadpost(){
+            loadedimages++
+            if (loadedimages==arr.length){
+                fn();
+            }
+        }
+        for (var i=0; i<arr.length; i++){
+            newimages[i]=new Image()
+            newimages[i].src=arr[i]
+            newimages[i].onload=function(){
+                imageloadpost()
+            }
+            newimages[i].onerror=function(){
+                imageloadpost()
+            }
+        }
+    }
+    var imgarr = [
+        "http://dev.images.moretao.com/games/mjj/Image/xlj1.jpg",
+        "http://dev.images.moretao.com/games/mjj/Image/xlj2.jpg",
+        "http://dev.images.moretao.com/games/mjj/Image/xlj3.jpg",
+        "http://dev.images.moretao.com/games/mjj/Image/xlj4.jpg",
+        "http://dev.images.moretao.com/games/mjj/Image/xlj5.jpg"
+
+    ];
+    var allimg = [
+        "http://dev.images.moretao.com/games/mjj/Image/xlj1.jpg",
+        "http://dev.images.moretao.com/games/mjj/Image/xlj2.jpg",
+        "http://dev.images.moretao.com/games/mjj/Image/xlj3.jpg",
+        "http://dev.images.moretao.com/games/mjj/Image/xlj4.jpg",
+        "http://dev.images.moretao.com/games/mjj/Image/xlj5.jpg",
+        "http://dev.images.moretao.com/games/mjj/Image/xlj_1.jpg",
+        "http://dev.images.moretao.com/games/mjj/Image/xlj_2.jpg",
+        "http://dev.images.moretao.com/games/mjj/Image/xlj_3.jpg",
+        "http://dev.images.moretao.com/games/mjj/Image/xlj_4.jpg",
+        "http://dev.images.moretao.com/games/mjj/Image/xlj_5.jpg",
+    ];
+
+    var token,index_order;
+    function auto_hide_alert(massage_text) {
+        var item = $('#auto-hide-alert');
+        $('#massage-text').html(massage_text);
+        item.css('opacity','1');
+        setTimeout("$('#auto-hide-alert').css('opacity','0');",2500);
+    }
+
+    function auto_hide_alert1(massage_text) {
+        var item = $('#auto-hide-alert1');
+        $('#massage-text1').html(massage_text);
+        item.css('opacity','1');
+        setTimeout("$('#auto-hide-alert1').css('opacity','0');",2500);
+    }
+
+    function planscont(plans,that){
+        var id = '569b7dcace5211b8790a5a47';
+        var plans = encodeURI(plans);
+        var url = 'http://m.moretao.com/api/postcardsplans/'+plans+'/'+id;
+        $.get(url,function(json){
+            console.log(json);
+            if(json.success == true){
+                $(".icon").removeClass("select");
+                that.addClass("select");
+            }else{
+                auto_hide_alert('抱歉,这张明信片已经送完了');
+            }
+//                此json中有对应plans的数量，数量大于0可以领;返回成功回调函数,等于0返回另一个函数弹出不可领;
+        })
+    }
+    function foo(e){
+        e.preventDefault();
+    }
+
+    $(document).ready(function() {
+        preloadimages(allimg,function(){
+            $(".loading").hide();
+        });
+        var location_href = window.location.search;
+        index_order = location_href.substring(location_href.indexOf("+")+1,location_href.length)||0;
+        $(".icon").removeClass("select");
+        $(".icon").eq(index_order).addClass("select");
+        $('#plan').val("芈月传"+(1+Number(index_order)));
+        token = location_href.substring(location_href.indexOf("?")+1,location_href.indexOf("+"));
+         console.log(token);
+        if(token){
+            auto_hide_alert('登录成功');
+          postcard();
+        }
+        function postcard(){
+            if(token){
+                var id = '569b7dcace5211b8790a5a47';
+                var url = 'http://m.moretao.com/api/postcards/'+ id +'?access_token='+ token;
+                $.get(url, function(json) {
+                    console.log(json);
+//                将json打印到隐藏的表单中;
+                    if(json.success == true){
+                        var userid = json.userid;
+                        var postcardid = json.postcard;
+                        $("#userid").val(userid);
+                        $("#postcardid").val(postcardid);
+                    }else{
+                        window.location.href = 'had.html'
+                    }
+                });
+            }
+        }
+
+    });
+    $(function(){
+        var order;
+
+
+        $(".icon").click(function(event){
+            event.stopPropagation();
+            order = $(".icon").index(this);
+            console.log(order);
+            var index = ($(".icon").index(this));
+            var plans = $('.swiper-slide img').eq(index).attr("title");
+            $("#plan").val(plans);
+//            发送请求判断有无明信片函数;
+            var that = $(this);
+            planscont(plans,that);
+        });
+
+        $(".swiper-slide").click(function(){
+
+            var index = imgarr[$(this).index()];
+            var content = "<img class='a' src="+index+" />";
+            $(".mengceng").show();
+            $(".model").html(content).show();
+            $("body").bind("touchmove", foo);
+        });
+
+        $(".mengceng").click(function(){
+            $(".mengceng").hide();
+            $("body").unbind("touchmove", foo);
+        });
+//        下一步
+        $(".btn").click(function(){
+
+            var lll = window.location.search;
+            var ttt = lll.substring(lll.indexOf("?")+1,lll.indexOf("+"));
+            var idd = '569b7dcace5211b8790a5a47';
+            var urll = 'http://m.moretao.com/api/postcards/'+ idd +'?access_token='+ ttt;
+            if(lll){
+                $.get(urll, function(json) {
+//                将json打印到隐藏的表单中;
+                    if(json.success == true){
+                        if(token){
+                            if($('.select').length>0){
+                                $(".bar").hide();
+                                $(".content").hide();
+                                $(".mxp_form").show();
+                            }else{
+                                auto_hide_alert('请选择明信片');
+                            }
+                        }else{
+                            window.location.href = "login.html"
+                        }
+                    }else{
+//                        window.location.href = 'had.html';
+                        auto_hide_alert('今日已寄完,请明天再来^^');
+                    }
+                });
+            }else{
+                window.location.href = "login.html"+"?index="+order;
+            }
+        });
+
+
+//提交信息按钮
+        var phone_input = $("#phone");
+        var post_number = $("#post-number");
+        var patrn=/^[0-9]{6}$/;
+
+        var checkphone = /^1([38]\d|4[57]|5[0-35-9]|7[06-8]|8[89])\d{8}$/;
+
+        $('#phone').blur(function() {
+            if(phone_input.val() != '' && phone_input.val() != null) {
+                if(!checkphone.test($("#phone").val())){
+                    auto_hide_alert1('请输入正确的手机号');
+                    phone_input.focus();
+                }
+            }
+
+        });
+
+        $('#post-number').blur(function() {
+            if(post_number.val() != '' && post_number.val() != null) {
+                if(!patrn.test($("#post-number").val())){
+                    auto_hide_alert1('请输入正确的邮编');
+                    post_number.focus();
+                }
+            }
+
+        });
+        $('#consignee-save-bt').click(function(){
+            var userid = $("#userid").val();
+            var card = $("#postcardid").val();
+            var plan = $("#plan").val();
+            var name = $('#consignee').val();
+            var phone = phone_input.val();
+            var zipcode = $('#post-number').val();
+            var address = $('#location').val();
+            if(name == '' || phone == '' || zipcode == '' || address == '' ){ auto_hide_alert1('请将信息填写完整'); return; }
+            $(".confirm").show();
+            $(".confirm_name").html(name);
+            $(".confirm_phone").html(phone);
+            $(".confirm_address").html(address);
+            $(".confirm_code").html(zipcode);
+        });
+        $('.rightt').click(function() {
+            var userid = $("#userid").val();
+            var card = $("#postcardid").val();
+            var plan = $("#plan").val();
+            var name = $('#consignee').val();
+            var phone = phone_input.val();
+            var zipcode = $('#post-number').val();
+            var address = $('#location').val();
+            if(name == '' || phone == '' || zipcode == '' || address == '' ){ auto_hide_alert1('请将信息填写完整'); return; }
+
+            var api = 'http://m.moretao.com/api/postcards_receive_records/new';
+            $.post(api, {user:userid,card:card,plan:plan,name:name, phone:phone, zipcode:zipcode, address:address}, function(data) {
+                console.log(data.item);
+                window.location.href = "success.html"
+            })
+        });
+        $('.leftt').click(function(){
+            $(".confirm").hide();
+        })
+    })
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f4651fa752d7aeceef4850788adb55e4";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>

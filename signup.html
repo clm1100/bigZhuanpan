@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta id="viewport" name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes"/>
+  <title>注册</title>
+  <script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="Javascript/signup.js"></script>
+  <script src="Javascript/js.js"></script>
+  <link href="Style/style.css" rel="stylesheet"/>
+
+</head>
+
+<style>
+  #user-avatar-img img{
+    width: 100%;
+  }
+  .consignee-info-input input{
+    width: 75%;
+    height: 40px;
+  }
+  .big-btn{
+    background-color: #e84034; width: 80%;height: 50px;text-align: center;line-height: 50px;margin: 20px auto;
+  }
+</style>
+<body style="text-align: center">
+  <div class="control" style="background:#f4f4f4 ;text-align: inherit;">
+    <form id="signup-form">
+    <div class="signup-input-body">
+      <div class="consignee-info-input" >
+        <span>手机号：</span><input id="phone" name="mobile" />
+      </div>
+      <div class="consignee-info-input" >
+        <span>验证码：</span><input name="code" style="width: 40%;" />
+        <div class="send-sms-code" onclick="send_sms_code();">获取验证码</div>
+      </div>
+      <div class="consignee-info-input" >
+        <span>密&nbsp;&nbsp;&nbsp;码：</span><input id="password-input" type="password" name="password"/>
+      </div>
+    </div>
+      <div id="consignee-save-bt" class="consignee-info-input save-bt"onclick="submit_form();" >去寄明信片!</div>
+      <a href="login.html" class="login-a">魔淘用户登录</a>
+    </form>
+  </div>
+  <div id="auto-hide-alert" >
+    <div class="text-center" style="width: 100%;">
+      <span id="massage-text"> </span>
+    </div>
+  </div>
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?f4651fa752d7aeceef4850788adb55e4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+  <script type="application/javascript">
+
+    // 微信相关方法
+    function is_weixin() {
+      var ua = window.navigator.userAgent.toLowerCase();
+      return 'micromessenger' == ua.match(/MicroMessenger/i);
+    }
+
+    document.addEventListener("DOMContentLoaded", function(event) {
+      if(is_weixin()) {
+        var api = "http://m.moretao.com/wechat/ticket?page=" + encodeURIComponent(window.location.href);
+        $.get(api, function(ticket, status) {
+          if(ticket.ticket) {
+            var t = ticket.ticket;
+
+            // 微信初始化, 设置分享
+            wx.config({
+              debug: false, // 开启调试模式,调用的所有api的返回值会在客户端 alert 出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+              appId: 'wx8c1226347ed11c26', // 必填，公众号的唯一标识
+              timestamp: t.at, // 必填，生成签名的时间戳
+              nonceStr: t.noncestr, // 必填，生成签名的随机串
+              imgUrl: 'http://dev.images.moretao.com/games/xlj/qq.jpg',
+              signature: t.signature,// 必填，签名，见附录1
+              jsApiList: ['onMenuShareAppMessage', 'onMenuShareTimeline', 'onMenuShareQQ', 'onMenuShareQZone', "getInstallState"] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+            });
+
+            wx.ready(function () {
+              wx.onMenuShareAppMessage({
+                title: "寻龙诀贺岁宝藏等你来摸金",
+                desc: "寻龙诀千万红包大派送",
+                link: "http://games.moretao.com/g/index.html",
+                imgUrl: "http://dev.images.moretao.com/games/xlj/qq.jpg"
+              });
+
+              wx.onMenuShareTimeline({
+                title: "寻龙诀贺岁宝藏等你来摸金",
+                desc: "寻龙诀千万红包大派送",
+                link: "http://games.moretao.com/g/index.html",
+                imgUrl: "http://dev.images.moretao.com/games/xlj/qq.jpg"
+              });
+
+              wx.onMenuShareQQ({
+                title: "寻龙诀贺岁宝藏等你来摸金",
+                desc: "寻龙诀千万红包大派送",
+                link: "http://games.moretao.com/g/index.html",
+                imgUrl: "http://dev.images.moretao.com/games/xlj/qq.jpg"
+              });
+
+              wx.onMenuShareQZone({
+                title: "寻龙诀贺岁宝藏等你来摸金",
+                desc: "寻龙诀千万红包大派送",
+                link: "http://games.moretao.com/g/index.html",
+                imgUrl: "http://dev.images.moretao.com/games/xlj/qq.jpg"
+              });
+            });
+          }
+        });
+      }
+    });
+  </script>
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?f4651fa752d7aeceef4850788adb55e4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</body>
+</html>

@@ -1,34 +1,103 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>HTML5 Canvas绘制图像入门示例</title>
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes"/>
+    <title>魔淘帮您送祝福</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="Style/animate.css"/>
+    <style>
+        *{padding:0;margin: 0;}
+        html,body{width:100%;
+            height: 100%;position: relative}
+        .content{width:100%;height:100%;background: url("http://dev.images.moretao.com/games/mjj/Image/bg3.jpg");background-size:100%;}
+        .model{display: none;width:100%;height:100%;background:url("http://dev.images.moretao.com/games/mjj/Image/float.jpg") no-repeat center center;background-size: cover;position: absolute;top:0;left:0}
+        .up{position:absolute;top:0px;right: 0px;width: 100px;height: 100px;background: #f45;opacity: 0;}
+        .down{position:absolute;width:100%;height:160px;position: absolute;bottom:0px;left:0;}
+        .qu{ -webkit-tap-highlight-color:transparent;}
+        a{ -webkit-tap-highlight-color:transparent;}
+        .header1{height: 10%;background:url("http://dev.images.moretao.com/games/mjj/Image/header.png") no-repeat center center;width:100%;background-size: 100%;}
+        .header{height: 70%;width:100%;background-size: 90%;}
+        .button{height:10%;background:url("http://dev.images.moretao.com/games/mjj/Image/btn3.png") no-repeat center center;width:100%;background-size: 100%;}
+        .footer{height: 10%;background:url("http://dev.images.moretao.com/games/mjj/Image/footer.png") no-repeat center center;width:100%;background-size: 100%;}
+        .pc{width:414px;margin:0 auto;}
+        .pc2{width:414px;position: absolute;top:0;left:50%;-webkit-transform: translate3d(-50%,0,0)}
+        .bg{background: url("http://dev.images.moretao.com/games/mjj/Image/bg3.jpg")}
+        .bg2{background:#4F4F4F}
+    </style>
 </head>
 <body>
-
-<!-- 添加canvas标签，并加上红色边框以便于在页面上查看 -->
-<canvas id="myCanvas" width="400px" height="300px" style="border: 1px solid red;">
-    您的浏览器不支持canvas标签。
-</canvas>
-
-<script type="text/javascript">
-    //获取Canvas对象(画布)
-    var canvas = document.getElementById("myCanvas");
-    //简单地检测当前浏览器是否支持Canvas对象，以免在一些不支持html5的浏览器中提示语法错误
-    if(canvas.getContext){
-        //获取对应的CanvasRenderingContext2D对象(画笔)
-        var ctx = canvas.getContext("2d");
-
-        //创建新的图片对象
-        var img = new Image();
-        //指定图片的URL
-        img.src = "http://img5.duitang.com/uploads/item/201408/23/20140823181551_UYGMv.jpeg";
-        //浏览器加载图片完毕后再绘制图片
-        img.onload = function(){
-            //以Canvas画布上的坐标(10,10)为起始点，绘制图像
-            ctx.drawImage(img, -120, -120,100,100);
-        };
+<div class="loading">
+    <h1 style="padding-top:300px;text-align: center"><img src="Style/ajax-loader.gif" alt=""/></h1>
+</div>
+<!--<div class="content" style="display:none">-->
+    <!--<a class="btn" href="javascript:void(0);"></a>-->
+<!--</div>-->
+<div class="model animated">
+    <div class="up qu"></div>
+    <a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.moretao&g_f=991653" class="down"></a>
+</div>
+<div class="content" style="display:none">
+    <div class="header1" ></div>
+    <div class="header" ></div>
+    <div class="button btn" ></div>
+    <div class="footer" ></div>
+</div>
+<script>
+    function preloadimages(arr,fn){
+        var newimages=[], loadedimages=0
+        var arr=(typeof arr!="object")? [arr] : arr;
+        function imageloadpost(){
+            loadedimages++
+            if (loadedimages==arr.length){
+                fn();
+            }
+        }
+        for (var i=0; i<arr.length; i++){
+            newimages[i]=new Image()
+            newimages[i].src=arr[i]
+            newimages[i].onload=function(){
+                imageloadpost()
+            }
+            newimages[i].onerror=function(){
+                imageloadpost()
+            }
+        }
     }
+    var imgarr = ["http://dev.images.moretao.com/games/mjj/Image/header.png","http://dev.images.moretao.com/games/mjj/Image/header1.png","http://dev.images.moretao.com/games/mjj/Image/btn4.png","http://dev.images.moretao.com/games/mjj/Image/float.jpg"];
+
+    $(function(){
+        if (!navigator.userAgent.match(/mobile/i)) {
+            $('.content').addClass("pc");
+            $('.model').addClass("pc2");
+            $(".btn").click(function(){
+                $("body").removeClass("bg").addClass("bg2");
+            });
+            $(".up").click(function(){
+                $("body").removeClass("bg2")
+            });
+        }
+
+        preloadimages(imgarr,function(){
+            $(".loading").hide();
+            $(".content").css('display','block');
+        });
+        $(".btn").click(function(){
+            $(".model").addClass("fadeIn").css("display","block");
+        });
+        $(".up").click(function(){
+            $(".model").hide();
+        });
+    })
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f4651fa752d7aeceef4850788adb55e4";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
 </script>
 </body>
 </html>

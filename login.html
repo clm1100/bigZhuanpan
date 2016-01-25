@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes"/>
+  <title>登录</title>
+  <script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="Javascript/login.js"></script>
+  <script src="Javascript/js.js"></script>
+  <link href="Style/style.css" rel="stylesheet"/>
+
+</head>
+<style>
+  #signin-form {
+    text-align: center;
+  }
+</style>
+<body>
+  <div class="control" style="background:#f4f4f4;text-align: inherit;">
+      <div style="width: 100%;height: auto;padding-top: 10px;">
+        <div class="consignee-info-input" >
+          <span>&nbsp;&nbsp;&nbsp;用户：</span><input id="nickname-input" type="text" name="username" placeholder="输入昵称/手机号码"  />
+        </div>
+        <div class="consignee-info-input" >
+          <span>&nbsp;&nbsp;&nbsp;密码：</span><input id="password-input" type="password" name="password" placeholder="输入密码" />
+        </div>
+      </div>
+      <div id="consignee-save-bt" class="consignee-info-input save-bt"onclick="login()" >登&nbsp;&nbsp;录</div>
+
+    <a href="signup.html" class="login-a">用户注册</a>
+  </div>
+
+  <div id="auto-hide-alert" >
+    <div class="text-center" style="width: 100%;">
+      <span id="massage-text"> </span>
+    </div>
+  </div>
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?f4651fa752d7aeceef4850788adb55e4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</body>
+</html>
